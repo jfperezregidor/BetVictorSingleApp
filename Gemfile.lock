@@ -207,7 +207,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   byebug
-  capybara (~> 2.13)
+  capybara
   httparty
   jbuilder (~> 2.5)
   jquery-rails

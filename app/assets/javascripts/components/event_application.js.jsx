@@ -43,7 +43,7 @@ class EventApplication extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.query);
+    alert('A query was submitted: ' + this.state.query);
     this.getDataFromApi(this.state.query)
     event.preventDefault();
   }
@@ -62,9 +62,9 @@ class EventApplication extends React.Component {
              <form onSubmit={this.handleSubmit}>
                 <label>
                   Query:
-                  <input type="text" value={this.state.query} onChange={this.handleChange} placeholder="/sports/:id_sport/events/:id_event"/>
+                  <input type="text" id="input-query" value={this.state.query} onChange={this.handleChange} placeholder="/sports/:id_sport/events/:id_event"/>
                 </label>
-                <input type="submit" value="Submit" />
+                <input type="submit" id="btn-submit" value="Submit" />
               </form>
             </div>
             

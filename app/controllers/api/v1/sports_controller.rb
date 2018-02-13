@@ -1,5 +1,4 @@
-module Api
-  module V1
+module Api::V1
     class SportsController < ApplicationController
         
         def index
@@ -30,4 +29,4 @@ module Api
         end
     end
   end
-end
+

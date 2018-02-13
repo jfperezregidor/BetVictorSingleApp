@@ -18,3 +18,8 @@ Interview Test
     /sports -  it shows all sports
     /sports/id  -  it shows all events
     /sports/id/events/id  - it shows the outcomes for an event
+
+
+Download https://github.com/mozilla/geckodriver/releases
+
+Install mv geckodriver /usr/local/bin/
