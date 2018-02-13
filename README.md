@@ -40,6 +40,7 @@ $ source ~/.rvm/scripts/rvm
 $ rails server
 ```
 Open browser like Chrome with url: localhost:3000
+
 You can do query as:
     /sports -  it shows all sports
     /sports/id  -  it shows all events
