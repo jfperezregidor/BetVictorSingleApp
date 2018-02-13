@@ -42,9 +42,9 @@ $ rails server
 Open browser like Chrome with url: localhost:3000
 
 You can do query as:
-    /sports -  it shows all sports
-    /sports/id  -  it shows all events
-    /sports/id/events/id  - it shows the outcomes for an event
+1. /sports -  it shows all sports
+2. /sports/id  -  it shows all events
+3./sports/id/events/id  - it shows the outcomes for an event
 
 
 ## Test
