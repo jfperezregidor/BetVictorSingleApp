@@ -59,7 +59,7 @@ RSpec.describe 'Do queries and show the results', type: :feature do
 
   end
   
-  scenario 'Query /sports/300 not has results' , :js => true do
+  scenario 'Query /sports/300 has not results' , :js => true do
     visit '/'
     fill_in 'input-query', :with => "/sports/300"
     click_button 'btn-submit'
@@ -70,7 +70,7 @@ RSpec.describe 'Do queries and show the results', type: :feature do
     expect(page).to have_selector('table tr', :count => 1)
   end
   
-  scenario 'Query error 1 lengh short' , :js => true do
+  scenario 'Query error 1 query short /sport' , :js => true do
     visit '/'
     fill_in 'input-query', :with => "/sport"
     click_button 'btn-submit'
