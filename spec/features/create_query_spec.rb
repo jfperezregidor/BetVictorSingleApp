@@ -55,4 +55,36 @@ RSpec.describe 'Do a query and show the results', type: :feature do
     expect(page).to have_content '2.875'
 
   end
+  
+  scenario 'Query error 1 lengh short' , :js => true do
+    visit '/'
+    fill_in 'input-query', :with => "/sport"
+    click_button 'btn-submit'
+    sleep 2 
+    a = page.driver.browser.switch_to.alert 
+    expect(a.text).to eq  'The query /sport has an error'
+    a.accept
+    
+  end
+  
+  scenario 'Query error 2 query = //' , :js => true do
+    visit '/'
+    fill_in 'input-query', :with => "//"
+    click_button 'btn-submit'
+    sleep 2 
+    a = page.driver.browser.switch_to.alert 
+    expect(a.text).to eq  'The query // has an error'
+    a.accept
+  end
+  
+  scenario 'Query error 3 the query is big and it is not correct query = /sportsevents' , :js => true do
+    visit '/'
+    fill_in 'input-query', :with => "/sportsevents"
+    click_button 'btn-submit'
+    sleep 2 
+    a = page.driver.browser.switch_to.alert 
+    expect(a.text).to eq  'The query /sportsevents has an error'
+    a.accept
+  end
+  
 end

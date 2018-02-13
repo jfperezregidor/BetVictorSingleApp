@@ -3,12 +3,32 @@ class EventApplication extends React.Component {
 
   getDataFromApi(query) {
     var self = this;
-    //'/api/v1/sports/100/events/916272900'
+    
     $.getJSON('/api/v1' + query, (response) => {
-        this.setState({ data: response.data,
-        type: this.getQueryType(query)}) 
+        if(response.status == 200){
+            this.setState({ data: response.data,
+            type: this.getQueryType(query)})
+        }
     });  
+    
   }
+  getCorrectQuery(query){
+    var end_query = "/sports"
+    if(query === end_query){
+        return query
+    }
+    if(query.includes("/sports/")){
+        end_query = query
+    }
+    if(query.includes("/events/") && query.includes("/sports/")){
+        type_query = query
+    }
+    if(query.includes("//") || (query.length >=7 && !query.includes('/sports/')) || query.length <= 6 || !query.includes('/')){
+        end_query = null
+    }
+    return end_query;
+  }
+  
   getQueryType(query){
     var type_query = "sports"
     if(query.includes("/sports/")){
@@ -43,9 +63,14 @@ class EventApplication extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A query was submitted: ' + this.state.query);
-    this.getDataFromApi(this.state.query)
-    event.preventDefault();
+    query_check = this.getCorrectQuery(this.state.query)
+    if(query_check != null){
+        alert('A query was submitted: ' + this.state.query);
+        this.getDataFromApi(this.state.query)
+        event.preventDefault();
+    }else{
+        alert('The query ' + this.state.query + ' has an error');
+    }
   }
 
   
