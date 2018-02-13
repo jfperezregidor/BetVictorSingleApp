@@ -1,4 +1,7 @@
-class Sport extends React.Component {
+// app/assets/javascripts/components/element.js.jsx
+// It's the react component of an Element (row) in the table
+// It ll render depends on the type of query
+class Element extends React.Component {
   
   constructor(props) {
     super(props);
@@ -21,9 +24,8 @@ class Sport extends React.Component {
   }
 }
 
-Sport.propTypes =  {
+Element.propTypes =  {
     title: PropTypes.string,
-    description: PropTypes.string,
   };
 
 

@@ -1,11 +1,14 @@
-
+// app/assets/javascripts/components/event_table.js.jsx
+// It's the react component of a Table
 class EventTable extends React.Component {
   render() {
   var data_arr = [];
-    this.props.data.forEach(function(result) {
-      data_arr.push(<Sport data={result} type={this.props.type}
-                         key={'result' + result.id}/>);
-    }.bind(this));
+    if(this.props.data != null){
+        this.props.data.forEach(function(result) {
+          data_arr.push(<Element data={result} type={this.props.type}
+                             key={'result' + result.id}/>);
+        }.bind(this));
+    }
     
     return(
       <table className="table table-striped">

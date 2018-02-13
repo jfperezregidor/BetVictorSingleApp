@@ -5,6 +5,7 @@ Interview Test
 ## Installation
 1. Install Ruby
 2. Install Rails
+3. Install Firefox browser
 3. cd BetVictorSingleApp
 4. source ~/.rvm/scripts/rvm
 5. bundle install

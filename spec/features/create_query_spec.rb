@@ -1,13 +1,13 @@
 # spec/features/creating_farm_spec.rb
 require 'rails_helper'
-RSpec.describe 'Do a query and show the results', type: :feature do
-   scenario 'Query to /sport and show all' , :js => true do
+RSpec.describe 'Do queries and show the results', type: :feature do
+   scenario 'Query to /sports and show all sports' , :js => true do
     visit '/'
     fill_in 'input-query', :with => "/sports"
     click_button 'btn-submit'
     sleep 2 
     a = page.driver.browser.switch_to.alert 
-    a.text.should == 'A query was submitted: /sports'
+    expect(a.text).to eq  'A query was submitted: /sports'
     a.accept
     expect(page).to have_content 'Football'
     expect(page).to have_content 'Tennis'
@@ -16,6 +16,7 @@ RSpec.describe 'Do a query and show the results', type: :feature do
     expect(page).to have_content 'Table Tennis'
     expect(page).to have_content 'Winter Sports'
     expect(page).to have_content 'Volleyball'
+    expect(page).to have_selector('table tr', :count => 8)
   end
   
   scenario 'Query to /sports/100 and show events' , :js => true do
@@ -24,7 +25,7 @@ RSpec.describe 'Do a query and show the results', type: :feature do
     click_button 'btn-submit'
     sleep 2 
     a = page.driver.browser.switch_to.alert 
-    a.text.should == 'A query was submitted: /sports/100'
+    expect(a.text).to eq  'A query was submitted: /sports/100'
     a.accept
     expect(page).to have_content 'Verona U19 v Torino U19'
     expect(page).to have_content 'First Half'
@@ -36,6 +37,7 @@ RSpec.describe 'Do a query and show the results', type: :feature do
     expect(page).to have_content 'Bargh Shiraz v Sanat Mes Kerman'
     expect(page).to have_content 'Shahrdari Arak v Machine Sazi Tabriz'
     expect(page).to have_content '916480500'
+    expect(page).to have_selector('table tr', :count => 11)
   end
   
   
@@ -45,7 +47,7 @@ RSpec.describe 'Do a query and show the results', type: :feature do
     click_button 'btn-submit'
     sleep 2 
     a = page.driver.browser.switch_to.alert 
-    a.text.should == 'A query was submitted: /sports/100/events/916272900'
+    expect(a.text).to eq  'A query was submitted: /sports/100/events/916272900'
     a.accept
     expect(page).to have_content 'Verona U19'
     expect(page).to have_content 'Draw'
@@ -53,7 +55,19 @@ RSpec.describe 'Do a query and show the results', type: :feature do
     expect(page).to have_content '2.2'
     expect(page).to have_content '3.4'
     expect(page).to have_content '2.875'
+    expect(page).to have_selector('table tr', :count => 4)
 
+  end
+  
+  scenario 'Query /sports/300 not has results' , :js => true do
+    visit '/'
+    fill_in 'input-query', :with => "/sports/300"
+    click_button 'btn-submit'
+    sleep 2
+    a = page.driver.browser.switch_to.alert 
+    expect(a.text).to eq  'A query was submitted: /sports/300'
+    a.accept
+    expect(page).to have_selector('table tr', :count => 1)
   end
   
   scenario 'Query error 1 lengh short' , :js => true do

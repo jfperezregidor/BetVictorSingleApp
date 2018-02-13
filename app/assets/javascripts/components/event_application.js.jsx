@@ -1,17 +1,33 @@
 
 class EventApplication extends React.Component {
 
+  componentDidMount() {
+    this.getDataFromApi('/sports');
+        
+  }
+  componentDidUpdate(){
+  
+  }
+
+  /**
+  * Get a data from a API
+  **/
   getDataFromApi(query) {
     var self = this;
-    
     $.getJSON('/api/v1' + query, (response) => {
         if(response.status == 200){
             this.setState({ data: response.data,
             type: this.getQueryType(query)})
+        }else{
+            alert('Error file not found');
         }
     });  
     
   }
+  /**
+  * Get a correct query after pass a filter
+  * TODO: It is possible to make a str.match()
+  **/
   getCorrectQuery(query){
     var end_query = "/sports"
     if(query === end_query){
@@ -29,6 +45,9 @@ class EventApplication extends React.Component {
     return end_query;
   }
   
+  /**
+  * Get query type is a method that return if it is for sport, events or outcomes and render diferent
+  **/
   getQueryType(query){
     var type_query = "sports"
     if(query.includes("/sports/")){
@@ -39,6 +58,10 @@ class EventApplication extends React.Component {
     }
     return type_query;
   }
+  
+  /**
+  * Constructor
+  **/
   constructor(props) {
     super(props);
     this.state = {
@@ -50,13 +73,7 @@ class EventApplication extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
       
   }
-  componentDidMount() {
-        this.getDataFromApi('/sports');
-        
-  }
-  componentDidUpdate(){
-  
-  }
+
   
   handleChange(event) {
     this.setState({query: event.target.value});
@@ -79,7 +96,7 @@ class EventApplication extends React.Component {
     return(
        <div className="container">
         <div className="jumbotron">
-          <h1>Example</h1>
+          <h1>Test - BetVictor</h1>
           <p>by Jerónimo Perez</p>
         </div>
         <div className="row">
